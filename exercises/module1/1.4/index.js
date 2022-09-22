@@ -1,4 +1,3 @@
-const interval = 2000;
 const redLight = document.querySelector(".red");
 const orangeLight = document.querySelector(".orange");
 const greenLight = document.querySelector(".green");
@@ -7,7 +6,7 @@ var myInterval;
 startLights();
 
 function startLights(){
-    myInterval = setInterval(switchLights,interval);
+    myInterval = setInterval(switchLights,2000);
 };
 
 let direction;
