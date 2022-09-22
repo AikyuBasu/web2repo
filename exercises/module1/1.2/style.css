@@ -1,0 +1,15 @@
+* {
+    background-color: rgb(72, 101, 110);
+}
+h1 {
+    display: flex;
+    color:rgb(18, 18, 41);
+    justify-content: center;
+    margin: auto;
+    text-align: center;
+    align-content: center;
+}
+
+html, body {
+    min-height: 100%;
+}
