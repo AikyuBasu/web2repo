@@ -30,8 +30,6 @@ divLogo.appendChild(h1);
 
 header.appendChild(divLogo);
 
-
-
 // MAIN
 
 const divMOAT = document.createElement('div');
