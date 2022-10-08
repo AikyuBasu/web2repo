@@ -7,9 +7,9 @@ const submitBtn = document.getElementById("contactForm");
 
 
 submitBtn.addEventListener('submit', (e) => {
-    const nbRows = document.getElementById('numberOfLines').value;
-    const nbColumns = document.getElementById('numberOfColumns').value;
-    const baseStr = document.getElementById('initialString').value;
+    const nbRows = document.getElementById('numberOfLines').value,
+    nbColumns = document.getElementById('numberOfColumns').value,
+    baseStr = document.getElementById('initialString').value;
 
     const tableOfElements = createArray(nbRows, nbColumns, baseStr);
     createHtmlTableAsString(tableOfElements);
