@@ -1,4 +1,4 @@
-import { clearPage } from '../../../../routing-hmi/src/utils/render';
+import { clearPage } from '../../utils/render';
 
 const MENU = [
   {
