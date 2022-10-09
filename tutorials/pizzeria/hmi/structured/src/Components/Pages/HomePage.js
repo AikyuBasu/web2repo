@@ -1,3 +1,5 @@
+import { clearPage } from '../../../../routing-hmi/src/utils/render';
+
 const MENU = [
   {
     id: 1,
@@ -45,6 +47,8 @@ const DRINKS = [
 ];
 
 const HomePage = () => {
+  clearPage();
+
   renderMenuFromString(MENU);
 
   attachOnMouseEventsToGoGreen();
