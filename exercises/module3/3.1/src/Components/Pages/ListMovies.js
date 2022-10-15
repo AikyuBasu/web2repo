@@ -1,7 +1,7 @@
 import Navigate from '../Router/Navigate';
 import { clearPage } from '../../utils/render';
 
-const NewPage = () => {
+const ListMovies = () => {
   clearPage();
   renderGoBackHomeButton();
 };
@@ -18,4 +18,4 @@ function renderGoBackHomeButton() {
   main.appendChild(submit);
 }
 
-export default NewPage;
+export default ListMovies;
