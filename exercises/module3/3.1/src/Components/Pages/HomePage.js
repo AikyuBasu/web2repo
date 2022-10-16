@@ -1,7 +1,12 @@
-import { renderImage } from "../../utils/render";
+import { clearPage, renderImage } from "../../utils/render";
 import interstellarImage from '../../img/interstellar.jpg'
 
 const HomePage = () => {
+  clearPage();
+  renderHomePage();
+};
+
+function renderHomePage(){
   const main = document.querySelector('main');
   const divMOAT = document.createElement('div');
   divMOAT.classList.add('container');
@@ -20,7 +25,6 @@ const HomePage = () => {
   h22.innerText = 'My favourite movies';
   divFavMovies.appendChild(h22);
   main.appendChild(divFavMovies);
-
 };
 
 
