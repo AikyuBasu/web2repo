@@ -2,7 +2,6 @@
   "name": "js-router-boilerplate",
   "version": "1.0.0",
   "description": "myJScourse's frontend boilerplate with a router",
-  "main": "index.js",
   "scripts": {
     "dev": "webpack --mode development",
     "build": "webpack --mode production",

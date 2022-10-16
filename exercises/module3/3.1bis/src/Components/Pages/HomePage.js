@@ -3,8 +3,6 @@ import interstellarImage from '../../img/interstellar.jpg'
 
 const HomePage = () => {
   clearPage();
-  const main2 = document.querySelector('main');
-  main2.innerHTML = `<h1>HA</h1>`;
   renderHomePage();
 };
 
