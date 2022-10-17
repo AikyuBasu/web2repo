@@ -4,7 +4,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
-var addMovieRouter = require('./routes/addMovies');
+var filmRouter = require('./routes/films');
 
 var app = express();
 
@@ -16,6 +16,6 @@ app.use(express.json());
 // app.use(express.static(path.join(__dirname, 'public'))); je n'utiliserai pas de serv de fichier statiques
 
 app.use('/', indexRouter);
-app.use('/add-movie', addMovieRouter);
+app.use('/films', filmRouter);
 
 module.exports = app;

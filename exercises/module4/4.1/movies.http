@@ -1,0 +1,14 @@
+### Read all movies with File variable
+@baseUrl = http://localhost:3000
+GET {{baseUrl}}/films
+
+### Read all movies filtered by minimum duration
+GET {{baseUrl}}/films?minimum-duration=150
+
+### Find a film based on its ID
+
+GET {{baseUrl}}/films/2
+
+### Find a film that does not exist
+GET {{baseUrl}}/films/666
+
