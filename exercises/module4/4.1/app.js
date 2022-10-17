@@ -3,8 +3,8 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-var pizzaRouter = require('./routes/pizzas');
-var usersRouter = require('./routes/users');
+var indexRouter = require('./routes/index');
+var addMovieRouter = require('./routes/addMovies');
 
 var app = express();
 
@@ -15,7 +15,7 @@ app.use(cookieParser());
 app.use(express.json());
 // app.use(express.static(path.join(__dirname, 'public'))); je n'utiliserai pas de serv de fichier statiques
 
-app.use('/pizzas', pizzaRouter);
-app.use('/users', usersRouter);
+app.use('/', indexRouter);
+app.use('/add-movie', addMovieRouter);
 
 module.exports = app;
