@@ -12,3 +12,43 @@ GET {{baseUrl}}/films/2
 ### Find a film that does not exist
 GET {{baseUrl}}/films/666
 
+### ADD a new movie to the collection with correct parameters
+POST {{baseUrl}}/films
+Content-Type: application/json
+
+{ 
+    "title":"Interstellar",
+    "duration": 169,
+    "budget": 165,
+    "link": "https://www.imdb.com/title/tt0816692/"
+}
+
+### ADD a new movie to the collection with wrong numeric parameter
+POST {{baseUrl}}/films
+Content-Type: application/json
+
+{ 
+    "title":"Interstellar",
+    "duration": "a",
+    "budget": -12,
+    "link": "https://www.imdb.com/title/tt0816692/"
+}
+
+### Delete a film based on its id
+DELETE {{baseUrl}}/films/3
+
+### Delete a film with wrong id
+DELETE {{baseUrl}}/films/666
+
+### modify an existing film in the collection
+PATCH {{baseUrl}}/films/2
+Content-Type: application/json
+
+{ 
+    "title":"Interstellar2",
+    "duration": 15,
+    "budget": 3,
+    "link": "https://www.imdb.com/title/tt0816692v2/"
+}
+
+
