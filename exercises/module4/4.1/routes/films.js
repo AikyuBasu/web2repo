@@ -1,4 +1,5 @@
 var express = require('express');
+const { isValidHttpUrl } = require('../helpers');
 var router = express.Router();
 
 const FILMS = [
@@ -58,39 +59,45 @@ router.get('/:id', (req,res,next) => {
 });
 
 // Create a film that will be added to the collection.
-router.post('/', (req, res) => {
-    //todo : if parameters pas bons renvoyer un status code 400
+router.post('/', (req, res) => { 
+  console.log('POST /films');
   const title = req?.body?.title?.length !== 0 ? req.body.title : undefined;
-  const content = req?.body?.content?.length !== 0 ? req.body.content : undefined;
+  const duration = req?.body?.duration?.length !== 0 ? req.body.duration : undefined;
+  const budget = req?.body?.budget?.length !== 0 ? req.body.budget : undefined;
+  const link = req?.body?.link?.length !== 0 ? req.body.link : undefined;
 
-  console.log('POST /pizzas');
 
-  if (!title || !content) return res.sendStatus(400); // error code '400 Bad request'
+  if (!title || !duration || !budget || !link) return res.sendStatus(400); // error code '400 Bad request'
+  if (parseInt(duration) <= 0 || parseInt(budget) <= 0) return res.sendStatus(400);
+  if (!isValidHttpUrl(link)) return res.sendStatus(400);
 
-  const lastItemIndex = MENU?.length !== 0 ? MENU.length - 1 : undefined;
-  const lastId = lastItemIndex !== undefined ? MENU[lastItemIndex]?.id : 0;
+
+  const lastItemIndex = FILMS?.length !== 0 ? FILMS.length - 1 : undefined;
+  const lastId = lastItemIndex !== undefined ? FILMS[lastItemIndex]?.id : 0;
   const nextId = lastId + 1;
 
-  const newPizza = {
+  const newFilm = {
     id: nextId,
     title: title,
-    content: content,
+    duration: duration,
+    budget: budget,
+    link: link,
   };
 
-  MENU.push(newPizza);
+  FILMS.push(newFilm);
 
-  res.json(newPizza);
+  res.json(newFilm);
 });
 
 // Delete a pizza from the menu based on its id
 router.delete('/:id', (req, res) => {
-  console.log(`DELETE /pizzas/${req.params.id}`);
+  console.log(`DELETE /movies/${req.params.id}`);
 
-  const foundIndex = MENU.findIndex(pizza => pizza.id == req.params.id);
+  const foundIndex = FILMS.findIndex(movie => movie.id == req.params.id);
 
   if (foundIndex < 0) return res.sendStatus(404);
 
-  const itemsRemovedFromMenu = MENU.splice(foundIndex, 1);
+  const itemsRemovedFromMenu = FILMS.splice(foundIndex, 1);
   const itemRemoved = itemsRemovedFromMenu[0];
 
   res.json(itemRemoved);
@@ -98,24 +105,29 @@ router.delete('/:id', (req, res) => {
 
 // Update a pizza based on its id and new values for its parameters
 router.patch('/:id', (req, res) => {
-  console.log(`PATCH /pizzas/${req.params.id}`);
+  console.log(`PATCH /films/${req.params.id}`);
 
   const title = req?.body?.title;
-  const content = req?.body?.content;
+  const duration = req?.body?.duration;
+  const budget = req?.body?.budget;
+  const link = req?.body?.link;
 
-  console.log('POST /pizzas');
 
-  if ((!title && !content) || title?.length === 0 || content?.length === 0) return res.sendStatus(400);
+  if ((!title && !duration && !budget && !link) ||
+      title?.length === 0 ||
+      (parseInt(duration) <= 0 && parseInt(budget) <= 0) ||
+      !isValidHttpUrl(link)) 
+      return res.sendStatus(400);
 
-  const foundIndex = MENU.findIndex(pizza => pizza.id == req.params.id);
+  const foundIndex = FILMS.findIndex(film => film.id == req.params.id);
 
   if (foundIndex < 0) return res.sendStatus(404);
 
-  const updatedPizza = {...MENU[foundIndex], ...req.body};
+  const updatedFilm = {...FILMS[foundIndex], ...req.body};
 
-  MENU[foundIndex] = updatedPizza;
+  FILMS[foundIndex] = updatedFilm;
 
-  res.json(updatedPizza);
+  res.json(updatedFilm);
 });
 
 module.exports = router;
