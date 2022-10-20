@@ -2,9 +2,9 @@ const express = require('express');
 
 const router = express.Router();
 
-/* GET users listing. */
+/* GET home page. */
 router.get('/', (req, res) => {
-  res.json({ users: [{ name: 'e-baron' }] });
+  res.render('index', { title: 'Express' });
 });
 
 module.exports = router;

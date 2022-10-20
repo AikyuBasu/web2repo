@@ -37,7 +37,9 @@ function serialize(filePath, object) {
  * @param {String} filePath - path to the .json file
  */
 function createPotentialLastDirectory(filePath) {
+  console.log(filePath);
   const pathToLastDirectory = filePath.substring(0, filePath.lastIndexOf(path.sep));
+  console.log(pathToLastDirectory);
 
   if (fs.existsSync(pathToLastDirectory)) return;
 
