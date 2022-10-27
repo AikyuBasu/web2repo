@@ -77,3 +77,12 @@ Content-Type: application/json
     "title":"Magic Green 2",
     "content":""
 }
+
+### Create a pizza
+POST {{baseUrl}}/pizzas
+Content-Type: application/json
+
+{
+    "title":"Magic Green",
+    "content":"Epinards, Brocolis, Olives vertes, Basilic"
+}
