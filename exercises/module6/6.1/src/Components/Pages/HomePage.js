@@ -3,10 +3,10 @@ const HomePage = async () => {
   try {
     const main = document.querySelector('main');
     main.classList = 'container mt-4';
-    main.innerHTML = 'A joke :';
+    main.innerHTML = '<h1 class="text-center">A joke so funny haha lol</h1>';
 
 
-    const response = await fetch('/api/joke/Any?type=single');
+    const response = await fetch('https://v2.jokeapi.dev/joke/Any?type=single');
 
     if (!response.ok) throw new Error(`fetch error : ${response.status} : ${response.statusText}`);
 
