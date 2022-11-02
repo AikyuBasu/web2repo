@@ -1,13 +1,11 @@
 import { clearPage } from '../../utils/render';
-import { addMovie } from '../../utils/movies';
 
 const AddMovie = () => {
   clearPage();
   renderAddForm();
-  onSubmitMovie();
 };
 
-function renderAddForm(){
+function renderAddForm() {
   const main = document.querySelector('main');
   main.innerHTML = `<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"> 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -43,26 +41,42 @@ function renderAddForm(){
       </div>
     </div>
   </form>`
-        };
-        
-function onSubmitMovie(){
+
   const form = document.getElementById('formMovie');
-  form.addEventListener('submit', (e) => {
-    const newMovie = {
-        title: document.getElementById('title').value,
-        duration: document.getElementById('duration').value,
-        budget: document.getElementById('budget').value,
-        link: document.getElementById('link').value
-    }
-    addMovie(newMovie);
-    e.preventDefault();
-    const main = document.querySelector('main');
-    const h1 = document.createElement('h1');
-    h1.className = "container";
-    h1.innerText = 'Thank you !';
-    main.appendChild(h1);
-  });
-}; 
+  form.addEventListener('submit', onSubmitMovie);
+};
+
+async function onSubmitMovie(e) {
+  e.preventDefault();
+
+  const title = document.getElementById('title').value;
+  const duration = document.getElementById('duration').value;
+  const budget = document.getElementById('budget').value;
+  const link = document.getElementById('link').value;
+
+  const options = {
+    method: 'POST',
+    body: JSON.stringify({
+      title,
+      duration,
+      budget,
+      link,
+    }),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  };
+
+  const response = await fetch('/api/films', options);
+
+  if (!response.ok) throw new Error(`fetch error : ${response.status} : ${response.statusText}`);
+  
+  const main = document.querySelector('main');
+  const h1 = document.createElement('h1');
+  h1.className = "container";
+  h1.innerText = 'Thank you !';
+  main.appendChild(h1);
+};
 
 
 export default AddMovie;
