@@ -31,14 +31,11 @@ const Navbar = () => {
                 <a class="nav-link" aria-current="page" href="#" data-uri="/">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#" data-uri="/list-movies">List of Movies</a>
+                <a class="nav-link" href="#" data-uri="/manage-movies">Manage Movies</a>
               </li>                      
               <li class="nav-item">
-                <a class="nav-link" href="#" data-uri="/add-movie">Add a Movie</a>
+                <a class="nav-link" href="#" data-uri="/add-movie">Manage Movies</a>
               </li>   
-              <li class="nav-item">
-                <a class="nav-link" href="#" data-uri="/update-movie">Update/Remove a Movie</a>
-              </li> 
             </ul>
           </div>
         </div>

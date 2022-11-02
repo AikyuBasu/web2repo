@@ -6,6 +6,8 @@ const AddMovie = () => {
 };
 
 function renderAddForm() {
+  // todo : rendre les titres modifiables (avec un bouton "save")
+  // todo : ajouter un bouton supprimer
   const main = document.querySelector('main');
   main.innerHTML = `<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"> 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">

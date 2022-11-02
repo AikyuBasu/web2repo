@@ -36,3 +36,24 @@ footer {
     width: 100px;
     display:flex;
 }
+
+.b {
+	background-color:#c25523;
+	border-radius:28px;
+	border:1px solid #2b2725;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:17px;
+	padding:16px 31px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #94411e;
+}
+.b:hover {
+	background-color:#cc5d4a;
+}
+.b:active {
+	position:relative;
+	top:1px;
+}
