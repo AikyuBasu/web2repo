@@ -38,25 +38,13 @@ function renderTable(movies) {
 
   movies.forEach((currentElement) => {
     const tr = document.createElement('tr');
-    const title = document.createElement('td');
-    title.innerText = currentElement.title;
-    tr.appendChild(title);
 
-    const linkCell = document.createElement('td');
-    const link = document.createElement('a');
-    link.href = currentElement.link;
-    link.innerText = currentElement.link;
-    linkCell.appendChild(link);
-    tr.appendChild(linkCell);
-
-
-    const duration = document.createElement('td');
-    duration.innerText = currentElement.duration;
-    tr.appendChild(duration);
-
-    const budget = document.createElement('td');
-    budget.innerText = currentElement.budget;
-    tr.appendChild(budget);
+    tr.innerHTML = `
+    <td class="fw-bold text-primary" contenteditable="true">${currentElement.title}</td>
+    <td class="text-primary" contenteditable="true"><a href="${currentElement.link}">${currentElement.link}</a></td>
+    <td class="text-primary" contenteditable="true">${currentElement.duration}</td>
+    <td class="text-primary" contenteditable="true">${currentElement.budget}</td>
+    `
 
     const buttonsWrapper = document.createElement('td');
     buttonsWrapper.setAttribute('data-attribute', currentElement.id);
@@ -81,28 +69,39 @@ function renderTable(movies) {
 };
 
 async function deleteMovie(e) {
-  const id = parseInt(e.target.parentElement.getAttribute('data-attribute'), 10);
-  
 
+   const id = parseInt(e.target.parentElement.getAttribute('data-attribute'), 10);
    const response = await fetch(`/api/films/${id}`, {
     method: 'DELETE',
   });
 
   if (!response.ok) throw new Error(`fetch error : ${response.status} : ${response.statusText}`);
-
-  const main = document.querySelector('main');
-  const h1 = document.createElement('h1');
-  h1.className = "container";
-  h1.innerText = 'Movie deleted successfully.';
-
-  main.appendChild(h1);
   
   window.location.reload();
 };
 
 async function saveModificationsMovie(e) {
   const film = e.target.parentElement.parentElement;
-  console.log(film);
+  const id = e.target.parentElement.getAttribute('data-attribute', 10);
+  
+  const response = await fetch(`/api/films/${id}`, {
+    method: 'PATCH',
+    body: JSON.stringify({
+      title: film.title,
+      link: film.link,
+      duration: film.duration,
+      budget: film.budget,
+    }),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+
+  // TODO: PATCH not working
+
+  if (!response.ok) throw new Error(`fetch error : ${response.status} : ${response.statusText}`);
+
+  window.location.reload();
 };
 
 

@@ -34,7 +34,7 @@ const Navbar = () => {
                 <a class="nav-link" href="#" data-uri="/manage-movies">Manage Movies</a>
               </li>                      
               <li class="nav-item">
-                <a class="nav-link" href="#" data-uri="/add-movie">Manage Movies</a>
+                <a class="nav-link" href="#" data-uri="/add-movie">Add Movies</a>
               </li>   
             </ul>
           </div>
