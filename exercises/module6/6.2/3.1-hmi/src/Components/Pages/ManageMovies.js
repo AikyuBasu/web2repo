@@ -82,15 +82,15 @@ async function deleteMovie(e) {
 
 async function saveModificationsMovie(e) {
   const film = e.target.parentElement.parentElement;
-  const id = e.target.parentElement.getAttribute('data-attribute', 10);
-  
+  const id = parseInt(e.target.parentElement.getAttribute('data-attribute'), 10);
+
   const response = await fetch(`/api/films/${id}`, {
     method: 'PATCH',
     body: JSON.stringify({
-      title: film.title,
-      link: film.link,
-      duration: film.duration,
-      budget: film.budget,
+      title: film.children[0].innerText,
+      link: film.children[1].children[0].innerText,
+      duration: parseInt(film.children[2].innerText, 10),
+      budget: parseInt(film.children[3].innerText, 10), 
     }),
     headers: {
       'Content-Type': 'application/json',
