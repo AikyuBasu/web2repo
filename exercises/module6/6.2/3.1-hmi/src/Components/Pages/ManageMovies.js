@@ -97,8 +97,6 @@ async function saveModificationsMovie(e) {
     },
   });
 
-  // TODO: PATCH not working
-
   if (!response.ok) throw new Error(`fetch error : ${response.status} : ${response.statusText}`);
 
   window.location.reload();
