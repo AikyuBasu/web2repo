@@ -40,7 +40,6 @@ async function onAddPizza(e) {
   const title = document.querySelector('#title').value;
   const content = document.querySelector('#content').value;
 
-
   const options = {
     method: 'POST',
     body: JSON.stringify({
@@ -48,7 +47,7 @@ async function onAddPizza(e) {
       content,
     }),
     headers: {
-      'Content-Type': 'application/json', // authenticated user token removed 
+      'Content-Type': 'application/json', // authenticated user token removed
     },
   };
 
