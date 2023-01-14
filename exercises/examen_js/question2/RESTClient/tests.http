@@ -1,0 +1,33 @@
+@baseURL = http://localhost:3000
+### Create a place
+POST {{baseURL}}/places
+Content-Type: application/json
+
+{
+    "name":"Brussels",
+    "description":"In french we say there are too many trees"
+}
+### Create a user
+POST {{baseURL}}/users
+Content-Type: application/json
+
+{
+    "username":"Aikyu",
+    "email":"aikyubasu@gmail.com"
+}
+
+###Create a user error
+POST {{baseURL}}/users
+Content-Type: application/json
+
+{
+    "username":"AikyuFake",
+    "email":"aikyubasu@gmail.com"
+}
+### Like a place
+PATCH {{baseURL}}/users/like?user=aikyubasu@gmail.com
+Content-Type: application/json
+
+{
+    "id":"13abee0d-0fe7-46e9-93a8-1b69dbe57df9"
+}

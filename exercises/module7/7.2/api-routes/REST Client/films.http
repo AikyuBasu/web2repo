@@ -1,0 +1,69 @@
+### Read all movies with File variable
+@baseUrl = http://localhost:3000
+GET {{baseUrl}}/films
+
+### Read all movies filtered by minimum duration
+GET {{baseUrl}}/films?minimum-duration=150
+
+### Find a film based on its ID
+
+GET {{baseUrl}}/films/2
+
+### Find a film that does not exist
+GET {{baseUrl}}/films/666
+
+### login manager
+# @name manager
+POST {{baseUrl}}/auths/login
+Content-Type: application/json
+
+{
+    "username":"manager",
+    "password":"manager"
+}
+
+### ADD a new movie to the collection with correct parameters
+POST {{baseUrl}}/films
+Content-Type: application/json
+Authorization: {{manager.response.body.token}}
+
+{ 
+    "title":"Interstellar",
+    "duration": 169,
+    "budget": 165,
+    "link": "https://www.imdb.com/title/tt0816692/"
+}
+
+### ADD a new movie to the collection with wrong numeric parameter
+POST {{baseUrl}}/films
+Content-Type: application/json
+Authorization: {{manager.response.body.token}}
+
+{ 
+    "title":"Interstellar",
+    "duration": "a",
+    "budget": -12,
+    "link": "https://www.imdb.com/title/tt0816692/"
+}
+
+### Delete a film based on its id
+DELETE {{baseUrl}}/films/3
+Authorization: {{manager.response.body.token}}
+
+### Delete a film with wrong id
+DELETE {{baseUrl}}/films/666
+Authorization: {{manager.response.body.token}}
+
+### modify an existing film in the collection
+PATCH {{baseUrl}}/films/2
+Content-Type: application/json
+Authorization: {{manager.response.body.token}}
+
+{ 
+    "title":"Interstellar2",
+    "duration": 15,
+    "budget": 3,
+    "link": "https://www.imdb.com/title/tt0816692v2/"
+}
+
+
