@@ -1,3 +1,4 @@
+import { getAuthenticatedUser } from '../../utils/auths';
 import { clearPage } from '../../utils/render';
 
 const ManageMovies = async () => {
@@ -69,10 +70,16 @@ function renderTable(movies) {
 };
 
 async function deleteMovie(e) {
+  const user = getAuthenticatedUser();
+  console.log(user);
 
    const id = parseInt(e.target.parentElement.getAttribute('data-attribute'), 10);
    const response = await fetch(`/api/films/${id}`, {
     method: 'DELETE',
+    headers:{
+      'Authorization': user.token
+    },
+    
   });
 
   if (!response.ok) throw new Error(`fetch error : ${response.status} : ${response.statusText}`);
@@ -83,6 +90,8 @@ async function deleteMovie(e) {
 async function saveModificationsMovie(e) {
   const film = e.target.parentElement.parentElement;
   const id = parseInt(e.target.parentElement.getAttribute('data-attribute'), 10);
+  const user = getAuthenticatedUser();
+  console.log(user);
 
   const response = await fetch(`/api/films/${id}`, {
     method: 'PATCH',
@@ -94,6 +103,7 @@ async function saveModificationsMovie(e) {
     }),
     headers: {
       'Content-Type': 'application/json',
+      'Authorization': user.token
     },
   });
 

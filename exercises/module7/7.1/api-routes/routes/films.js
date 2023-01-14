@@ -1,5 +1,6 @@
 const express = require('express');
 const { isValidHttpUrl } = require('../helpers');
+const { authorize } = require('../utils/auths');
 
 const router = express.Router();
 
@@ -13,6 +14,7 @@ const {
 
 
 // Read all the films from the collection, potentially filtered by minimum duration
+// eslint-disable-next-line arrow-body-style
 router.get('/', (req, res) => {
   return res.json(readAllFilms(req.query));
 });
@@ -25,7 +27,7 @@ router.get('/:id', (req,res) => {
 });
 
 // Create a film that will be added to the collection.
-router.post('/', (req, res) => { 
+router.post('/', authorize, (req, res) => { 
   // les parametres passés au modele doivent etre vérifiés avant par le router ssi cela entrave la bonne utilisation de ce dernier
   // le model traite des données correctes en théorie
 
@@ -43,7 +45,7 @@ router.post('/', (req, res) => {
 });
 
 // Delete a film from the collection based on its id
-router.delete('/:id', (req, res) => {
+router.delete('/:id', authorize, (req, res) => {
   const deletedFilm = deleteOneFilm(req.params.id);
 
   if (!deletedFilm) return res.sendStatus(404);
@@ -52,7 +54,7 @@ router.delete('/:id', (req, res) => {
 });
 
 // Update a movie based on its id and new values for its parameters
-router.patch('/:id', (req, res) => {
+router.patch('/:id', authorize, (req, res) => {
 
   const title = req?.body?.title;
   const duration = req?.body?.duration;

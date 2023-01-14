@@ -1,3 +1,4 @@
+import { getAuthenticatedUser } from '../../utils/auths';
 import { clearPage } from '../../utils/render';
 
 const AddMovie = () => {
@@ -56,6 +57,8 @@ async function onSubmitMovie(e) {
   const budget = document.getElementById('budget').value;
   const link = document.getElementById('link').value;
 
+  const user = getAuthenticatedUser();
+
   const options = {
     method: 'POST',
     body: JSON.stringify({
@@ -66,6 +69,7 @@ async function onSubmitMovie(e) {
     }),
     headers: {
       'Content-Type': 'application/json',
+      'Authorization': user.token
     },
   };
 
